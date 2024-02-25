@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import envelopesSlice from './envelopesReducer';
-
+import envelopes from './envelopesReducer';
 
 export const store = configureStore({
-  reducer: {envelopesSlice},
-})
+  reducer: { envelopes },
+});
