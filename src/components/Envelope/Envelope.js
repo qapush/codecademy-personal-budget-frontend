@@ -1,7 +1,9 @@
 const Envelope = () => {
   return (
     <div>
-      <p>Siema</p>
+      <hr />
+      <p>One envelope</p>
+      <hr />
     </div>
   );
 };

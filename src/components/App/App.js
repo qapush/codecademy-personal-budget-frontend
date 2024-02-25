@@ -1,30 +1,33 @@
 import './App.css';
 import { useEffect } from 'react';
-import { fetchAll, selectAll } from '../../store/envelopesReducer';
-import { useDispatch, useSelector } from 'react-redux';
+import { fetchAll } from '../../store/envelopesReducer';
+import { useDispatch } from 'react-redux';
+import Layout from '../Layout/Layout';
+import Envelopes from '../Envelopes/Envelopes';
+import Envelope from '../Envelope/Envelope';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
-  const envelopesData = useSelector(selectAll);
+  
 
   useEffect(() => {
     dispatch(fetchAll());
   }, []);
 
-  const envelopes = envelopesData.map((item) => {
-    return (
-      <li key={item.id}>
-        <div>
-          <h2>{item.name}</h2>
-          <p>{item.balance}</p>
-        </div>
-      </li>
-    );
-  });
+  
+  
 
   return (
     <div className="App">
-      <ul>{envelopes}</ul>
+     <Router>
+      <Routes>
+        <Route element={<Layout/>}>
+          <Route path="/" element={<Envelopes/>}/>
+          <Route path="/:id" element={<Envelope/>}/>
+        </Route>
+      </Routes>
+     </Router>
     </div>
   );
 }
