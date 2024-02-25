@@ -1,14 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function Layout() {
   return (
     <div>
       <nav>
-        <span>All </span>
-        <span> One</span>
+        <NavLink to={'/'}>Home</NavLink>
       </nav>
       <main>
-        <Outlet/>
+        <Outlet />
       </main>
     </div>
   );
