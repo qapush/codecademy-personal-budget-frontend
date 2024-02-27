@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
-import { fetchAll } from '../../store/envelopesReducer';
+import { fetchAll } from '../../store/thunks';
 import { useDispatch } from 'react-redux';
 import Layout from '../Layout/Layout';
 import Envelopes from '../Envelopes/Envelopes';
@@ -9,25 +9,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
   const dispatch = useDispatch();
-  
 
   useEffect(() => {
     dispatch(fetchAll());
   }, []);
 
-  
-  
-
   return (
     <div className="App">
-     <Router>
-      <Routes>
-        <Route element={<Layout/>}>
-          <Route path="/" element={<Envelopes/>}/>
-          <Route path="/:id" element={<Envelope/>}/>
-        </Route>
-      </Routes>
-     </Router>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Envelopes />} />
+            <Route path="/:id" element={<Envelope />} />
+          </Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

@@ -21,3 +21,12 @@ ul {
 a.active {
   display: none;
 }
+
+input, label {
+  display: block;
+  margin: 1rem auto;
+}
+
+button {
+  margin: 1rem;
+}

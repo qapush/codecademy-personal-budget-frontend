@@ -1,23 +1,8 @@
-import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+
+import { fetchAll, changeOne, removeOne } from './thunks';
 
 const envelopesAdapted = createEntityAdapter();
-
-export const fetchAll = createAsyncThunk('envelopes/fetchAll', async () => {
-  const response = await fetch('http://localhost:4000/envelopes');
-  return response.json();
-});
-
-export const changeOne = createAsyncThunk('envelopes/changeOne', async (entity) => {
-  let URL = `http://localhost:4000/envelopes/${entity.id}?`;
-  if (entity.amount) URL += `amount=${entity.amount}`;
-  URL += '&';
-  if (entity.name) URL += `name=${entity.name}`;
-
-  const response = await fetch(URL, {
-    method: 'PUT',
-  });
-  return response.json();
-});
 
 const envelopesReducer = createSlice({
   name: 'envelopes',
@@ -29,6 +14,9 @@ const envelopesReducer = createSlice({
     });
     builder.addCase(changeOne.fulfilled, (state, action) => {
       envelopesAdapted.setOne(state, action.payload);
+    });
+    builder.addCase(removeOne.fulfilled, (state, action) => {
+      envelopesAdapted.removeOne(state, action.payload);
     });
   },
 });

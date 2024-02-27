@@ -1,15 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { selectById } from '../../store/envelopesReducer';
-import { useSelector, useDispatch } from 'react-redux';
-import { changeOne } from '../../store/envelopesReducer';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import EnvelopeChangeForm from '../EnvelopeChangeForm/EnvelopeChangeForm';
 
 const Envelope = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(changeOne({ id: 0, amount: '12' }));
-  }, []);
-
   const { id } = useParams();
 
   const envelope = useSelector((store) => selectById(store, id));
@@ -23,8 +17,7 @@ const Envelope = () => {
       <h1>{envelope.name}</h1>
       <h2>Balance: {envelope.balance}</h2>
       <hr />
-      <h3>Change:</h3>
-      <form></form>
+      <EnvelopeChangeForm id={id} />
     </div>
   );
 };
