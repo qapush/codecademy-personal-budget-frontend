@@ -24,3 +24,11 @@ export const removeOne = createAsyncThunk('envelopes/removeOne', async (id) => {
 
   return id;
 });
+
+export const addOne = createAsyncThunk('envelopes/addOne', async ({ name, amount }) => {
+  const res = await fetch(`http://localhost:4000/envelopes/?name=${name}&amount=${amount}`, {
+    method: 'POST',
+  });
+
+  return res.json();
+});

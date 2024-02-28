@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { selectAll } from '../../store/envelopesReducer';
 import { Link } from 'react-router-dom';
+import { addOne } from '../../store/thunks';
+import Form from '../Form/Form';
 
 export default function Envelopes() {
   const envelopesData = useSelector(selectAll);
@@ -18,5 +20,10 @@ export default function Envelopes() {
     );
   });
 
-  return <ul>{envelopes}</ul>;
+  return (
+    <>
+      <ul>{envelopes}</ul>
+      <Form action={addOne} />
+    </>
+  );
 }

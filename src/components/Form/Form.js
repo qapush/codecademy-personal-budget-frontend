@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { changeOne, removeOne } from '../../store/thunks';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-const EnvelopeChangeForm = ({ id }) => {
-  const [form, setForm] = useState({ name: '', amount: '' });
+const Form = ({ action }) => {
+  const { id } = useParams();
+  const [form, setForm] = useState({ name: '', amount: '', id });
   const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
@@ -12,30 +13,21 @@ const EnvelopeChangeForm = ({ id }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(changeOne({ id, name: form.name, amount: form.amount }));
-    setForm({ name: '', amount: '' });
-  };
-
-  const handleRemove = () => {
-    const verify = window.prompt('Type in "delete" to confirm', 'delete');
-    if (verify === 'delete') {
-      dispatch(removeOne(id));
-    }
+    dispatch(action(form));
+    setForm({ name: '', amount: '', id: form.id });
   };
 
   return (
     <>
-      <h2>Update envelope:</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Envelope name</label>
         <input type="text" id="name" value={form.name} onChange={handleChange} />
         <label htmlFor="amount">Amount</label>
         <input type="number" id="amount" value={form.amount} onChange={handleChange} />
-        <button type="submit">Update</button>
+        <button type="submit">Submit</button>
       </form>
-      <button onClick={handleRemove}>Remove envelope</button>
     </>
   );
 };
 
-export default EnvelopeChangeForm;
+export default Form;

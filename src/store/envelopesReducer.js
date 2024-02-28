@@ -1,6 +1,6 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 
-import { fetchAll, changeOne, removeOne } from './thunks';
+import { fetchAll, changeOne, removeOne, addOne } from './thunks';
 
 const envelopesAdapted = createEntityAdapter();
 
@@ -17,6 +17,9 @@ const envelopesReducer = createSlice({
     });
     builder.addCase(removeOne.fulfilled, (state, action) => {
       envelopesAdapted.removeOne(state, action.payload);
+    });
+    builder.addCase(addOne.fulfilled, (state, action) => {
+      envelopesAdapted.addOne(state, action.payload);
     });
   },
 });
