@@ -32,3 +32,20 @@ export const addOne = createAsyncThunk('envelopes/addOne', async ({ name, amount
 
   return res.json();
 });
+
+export const transfer = createAsyncThunk(
+  'envelopes/transfer',
+  async ({ to, amount, id }, thunkAPI) => {
+    console.log(to, amount, id);
+    const name = thunkAPI.getState().envelopes.entities[id].name;
+    const res = await fetch(`http://localhost:4000/envelopes/transfer/${name}/${to}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ amount: Number(amount) }),
+    });
+
+    return res.json();
+  },
+);

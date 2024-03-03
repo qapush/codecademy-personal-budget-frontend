@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { selectById } from '../../store/envelopesReducer';
+import { useParams, useNavigate } from 'react-router-dom';
+import { selectById } from '../../features/envelopes/envelopesReducer';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeOne, changeOne } from '../../store/thunks';
+import { removeOne, changeOne, transfer } from '../../features/envelopes/thunks';
 import Form from '../Form/Form';
 
 const Envelope = () => {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const envelope = useSelector((store) => selectById(store, id));
   const status = useSelector((state) => state.envelopes.state);
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const Envelope = () => {
   const handleRemove = () => {
     const verify = window.prompt('Type in "delete" to confirm', 'delete');
     if (verify === 'delete') {
-      dispatch(removeOne(id));
+      dispatch(removeOne(id)).then(() => navigate('/'));
     }
   };
 
@@ -28,8 +28,9 @@ const Envelope = () => {
       <hr />
       <h2>Change envelope</h2>
       <Form id={id} action={changeOne} />
-      <button onClick={handleRemove}>Remove envelope</button>
       <h2>Transfer to another envelope</h2>
+      <Form id={id} action={transfer} transfer />
+      <button onClick={handleRemove}>Remove envelope</button>
     </div>
   );
 };

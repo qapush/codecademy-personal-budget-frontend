@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
-import { selectAll } from '../../store/envelopesReducer';
+import { selectAll } from '../../features/envelopes/envelopesReducer';
 import { Link } from 'react-router-dom';
-import { addOne } from '../../store/thunks';
+import { addOne } from '../../features/envelopes/thunks';
 import Form from '../Form/Form';
 
 export default function Envelopes() {

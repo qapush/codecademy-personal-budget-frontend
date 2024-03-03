@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
-import { fetchAll } from '../../store/thunks';
+import { fetchAll } from '../../features/envelopes/thunks';
 import { useDispatch } from 'react-redux';
 import Layout from '../Layout/Layout';
 import Envelopes from '../Envelopes/Envelopes';
