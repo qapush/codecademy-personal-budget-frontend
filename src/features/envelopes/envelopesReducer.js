@@ -22,8 +22,8 @@ const envelopesReducer = createSlice({
       envelopesAdapter.addOne(state, action.payload);
     });
     builder.addCase(transfer.fulfilled, (state, action) => {
-      console.log(action.payload.fromTo);
-      envelopesAdapter.setMany(state, action.payload.fromTo);
+      console.log(action.payload);
+      envelopesAdapter.setMany(state, action.payload);
     });
   },
 });

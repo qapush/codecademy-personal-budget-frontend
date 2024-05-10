@@ -1,3 +1,9 @@
+:root {
+  --main-bg-color: #346773;
+  --link-color: #85F2A0;
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--main-bg-color);
 }
 
 code {
@@ -16,6 +23,10 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+a {
+  color: var(--link-color);
 }
 
 a.active {
