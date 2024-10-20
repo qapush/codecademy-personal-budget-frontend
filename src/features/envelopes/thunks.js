@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchAll = createAsyncThunk('envelopes/fetchAll', async () => {
-  const response = await fetch('http://localhost:4000/envelopes');
+  const response = await fetch(`${process.env.REACT_APP_URL}/envelopes`);
   return response.json();
 });
 
 export const changeOne = createAsyncThunk('envelopes/changeOne', async (entity) => {
-  let URL = `http://localhost:4000/envelopes/${entity.id}?`;
+  let URL = `${process.env.REACT_APP_URL}/envelopes/${entity.id}?`;
   if (entity.amount) URL += `amount=${entity.amount}`;
   URL += '&';
   if (entity.name) URL += `name=${entity.name}`;
@@ -18,7 +18,7 @@ export const changeOne = createAsyncThunk('envelopes/changeOne', async (entity) 
 });
 
 export const removeOne = createAsyncThunk('envelopes/removeOne', async (id) => {
-  await fetch(`http://localhost:4000/envelopes/${id}?`, {
+  await fetch(`${process.env.REACT_APP_URL}/envelopes/${id}?`, {
     method: 'DELETE',
   });
 
@@ -26,7 +26,7 @@ export const removeOne = createAsyncThunk('envelopes/removeOne', async (id) => {
 });
 
 export const addOne = createAsyncThunk('envelopes/addOne', async ({ name, amount }) => {
-  const res = await fetch(`http://localhost:4000/envelopes/?name=${name}&amount=${amount}`, {
+  const res = await fetch(`${process.env.REACT_APP_URL}/envelopes/?name=${name}&amount=${amount}`, {
     method: 'POST',
   });
 
@@ -38,7 +38,7 @@ export const transfer = createAsyncThunk(
   async ({ to, amount, id }, thunkAPI) => {
     console.log(to, amount, id);
     const name = thunkAPI.getState().envelopes.entities[id].name;
-    const res = await fetch(`http://localhost:4000/envelopes/transfer/${name}/${to}`, {
+    const res = await fetch(`${process.env.REACT_APP_URL}/envelopes/transfer/${name}/${to}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
