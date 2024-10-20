@@ -12,7 +12,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchAll());
-  }, []);
+  }, [dispatch]);
 
   console.log(`${process.env.REACT_APP_URL}`);
   console.log(`sadsd`);

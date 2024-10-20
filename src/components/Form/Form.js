@@ -21,7 +21,9 @@ const Form = ({ action, transfer }) => {
       <select id="to" value={form.to} onChange={handleChange} required>
         <option key="node"></option>
         {envelopes.map((envelope) => {
-          if (envelope.id !== Number(id)) return <option key={envelope.id}>{envelope.name}</option>;
+          if (envelope.id !== Number(id)) {
+            return <option key={envelope.id}>{envelope.name}</option>;
+          };
         })}
       </select>
     </>
