@@ -13,7 +13,7 @@ export default function Envelopes() {
         <Link to={`/${item.id}`}>
           <div>
             <h2>{item.name}</h2>
-            <p>{item.balance}</p>
+            <p>Balance: {item.balance}</p>
           </div>
         </Link>
       </li>
@@ -23,6 +23,7 @@ export default function Envelopes() {
   return (
     <>
       <ul>{envelopes}</ul>
+      <h2>Add new envelope</h2>
       <Form action={addOne} />
     </>
   );

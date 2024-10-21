@@ -15,7 +15,6 @@ function App() {
   }, [dispatch]);
 
   console.log(`${process.env.REACT_APP_URL}`);
-  console.log(`sadsd`);
 
   return (
     <div className="App">
